@@ -8,6 +8,7 @@ import { UserList } from './users';
 import { TeacherList } from './teachers';
 import { SchoolList } from './schools';
 import { ClassList } from './classes';
+import { CoursesList } from "./courses";
 /* import jsonServerProvider from 'ra-data-json-server'; */
 import simpleRestProvider from 'ra-data-simple-rest';
 import PostIcon from '@mui/icons-material/Book';
@@ -26,6 +27,7 @@ const App = () => (
     <Resource name="teachers" list={TeacherList} icon={UserIcon} />
     <Resource name="schools" list={SchoolList} icon={UserIcon} />
     <Resource name="classes" list={ClassList} icon={UserIcon} />
+    <Resource name="courses" list={CoursesList} icon={UserIcon} />
 
   </Admin>
 );
