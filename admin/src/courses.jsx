@@ -1,6 +1,6 @@
-import { Datagrid, List, TextField, UrlField, NumberField,  } from 'react-admin';
+import { Datagrid, List, TextField, UrlField, NumberField, } from 'react-admin';
 
-export const CoursesList = () => {
+export const CoursesList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source='id' />
@@ -12,7 +12,7 @@ export const CoursesList = () => {
       <TextField source='defaultStart' />
       <TextField source='defaultEnd' />
       <NumberField source='defaultInvoiceItem' />
-      <TextField source='defaultHoursPerDay'/>
+      <TextField source='defaultHoursPerDay' />
     </Datagrid>
   </List>
-}
+);
