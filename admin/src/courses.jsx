@@ -1,4 +1,4 @@
-import { Datagrid, List, TextField, UrlField, NumberField, } from 'react-admin';
+import { Datagrid, List, TextField, UrlField, NumberField, BooleanField, } from 'react-admin';
 
 export const CoursesList = () => (
   <List>
@@ -6,13 +6,14 @@ export const CoursesList = () => (
       <TextField source='id' />
       <TextField source='name' />
       <TextField source='shortName' />
-      <TextField source='school' />
-      <UrlField source='blog' />
-      <NumberField source='hide' />
-      <TextField source='defaultStart' />
-      <TextField source='defaultEnd' />
-      <NumberField source='defaultInvoiceItem' />
-      <TextField source='defaultHoursPerDay' />
+      <NumberField source='class' />
+      <NumberField source='points' />
+      <TextField source='startDate' />
+      <TextField source='endDate' />
+      <TextField source='plan' />
+      <NumberField source='invoiceItem' />
+      <NumberField source='hoursPerDay' />
+      <BooleanField source='hide' />
     </Datagrid>
   </List>
 );
