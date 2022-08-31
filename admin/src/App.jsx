@@ -1,9 +1,7 @@
 // in src/App.js
 import * as React from "react";
 import { Admin, Resource, EditGuesser } from 'react-admin';
-import { PostList } from './posts';
-import { PostEdit } from "./post-edit";
-import { PostCreate } from "./post-create";
+import { PostList, PostEdit, PostCreate } from './posts';
 import { UserList } from './users';
 import { TeacherList } from './teachers';
 import { SchoolList } from './schools';
