@@ -27,7 +27,7 @@ const App = () => (
     <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="teachers" list={TeacherList} icon={SchoolIcon} />
-    <Resource name="schools" list={SchoolList} icon={ApartmentRounded} />
+    <Resource name="schools" list={SchoolList} create={PostCreate} icon={ApartmentRounded} />
     <Resource name="classes" list={ClassList} icon={PostIcon} />
     <Resource name="courses" list={CoursesList} icon={PostIcon} edit={EditGuesser} />
 
