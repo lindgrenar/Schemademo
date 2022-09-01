@@ -77,7 +77,7 @@
     ]
   },
   {
-    "route": "/data/teachers",
+    "route": "/data/teachers*",
     "roles": [
       {
         "role": "user",

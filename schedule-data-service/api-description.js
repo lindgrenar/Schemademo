@@ -24,7 +24,7 @@ module.exports = function(host){
         },
         {
             route:"/data/teachers",
-            methods: ["GET","POST","PUT"],
+            methods: ["GET","POST","PUT","DELETE"],
             description:"Get list of teachers, create teacher, add/change teacher details",
             link: host  + "/data/teachers"
         },
