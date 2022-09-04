@@ -1,18 +1,35 @@
-import { Datagrid, EmailField, List, TextField } from 'react-admin';
+import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit } from 'react-admin';
 
-export const ClassList = () => (
+export const ClassesList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid RowClick="edit">
       <TextField source="id" />
       <TextField source="name" />
       <TextField source="shortName" />
       <TextField source="school" />
       <TextField source="blog" />
-      <EmailField source="hide" />
       <TextField source="defaultStartTime" />
       <TextField source="defaultEndTime" />
       <TextField source="defaultlnvoiceTime" />
       <TextField source="defaultHoursPerDay" />
-    </Datagrid>
+      <EditButton />
+      </Datagrid>
   </List>
-)
+);
+
+export const ClassesEdit = () => (
+  <Edit>
+    <Datagrid RowClick="edit">
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="shortName" />
+      <TextField source="school" />
+      <TextField source="blog" />
+      <TextField source="defaultStartTime" />
+      <TextField source="defaultEndTime" />
+      <TextField source="defaultlnvoiceTime" />
+      <TextField source="defaultHoursPerDay" />
+      <EditButton />
+    </Datagrid>
+  </Edit>
+);
