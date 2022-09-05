@@ -38,7 +38,18 @@
       {
         "role": "user",
         "methods": [
-          "GET"
+          "GET",
+          "POST",
+          "PUT"
+        ]
+      },
+      {
+        "role": "admin",
+        "methods": [
+          "GET",
+          "PUT",
+          "POST",
+          "DELETE"
         ]
       }
     ]

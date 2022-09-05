@@ -113,16 +113,16 @@ server.get('/data/:table', (req, res) => { // but limit which tables to query wi
   res.json(result)
 })
 //////
-server.get('/data/:table/:id', (request, response) => { // but limit which tables to query with ACL
-  let query = "SELECT * FROM " + request.params.table + "WHERE id=@id"
+server.delete('/data/:table/:id', (req, res) => { // but limit which tables to query with ACL
+  let query = "DELETE FROM " + req.params.table + "WHERE id=@id"
   let result = db.prepare(query).all({ id: request.params.id })
-  response.json(result)
+  res.json(result)
 })
 
 //////
 
 
-// delete teachers table 
+/* // delete teachers table 
 server.delete('/data/:table/:id', (request, response) => {
   let query = "DELETE FROM " + request.params.table + "WHERE id=@id"
   let result;
@@ -134,4 +134,4 @@ server.delete('/data/:table/:id', (request, response) => {
     result = e;
   }
   response.json(result)
-})
+}) */
