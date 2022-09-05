@@ -91,6 +91,7 @@ server.get('/data/classes_view/:all?', (req, res) => {
 })
 
 const createInvoice = require('./services/create-invoice.js')
+const { request } = require("express")
 
 server.post('/data/invoices/', (req, res) => {
   if (!req.body.startDate || !req.body.endDate || !req.body.school) {
@@ -110,4 +111,27 @@ server.get('/data/:table', (req, res) => { // but limit which tables to query wi
   let query = "SELECT * FROM " + req.params.table
   let result = db.prepare(query).all()
   res.json(result)
+})
+//////
+server.get('/data/:table/:id', (request, response) => { // but limit which tables to query with ACL
+  let query = "SELECT * FROM " + request.params.table + "WHERE id=@id"
+  let result = db.prepare(query).all({ id: request.params.id })
+  response.json(result)
+})
+
+//////
+
+
+// delete teachers table 
+server.delete('/data/:table/:id', (request, response) => {
+  let query = "DELETE FROM " + request.params.table + "WHERE id=@id"
+  let result;
+  try {
+    result = db.prepare(query).run({ id: request.params.id })
+  }
+  catch (e) {
+    console.error(e)
+    result = e;
+  }
+  response.json(result)
 })

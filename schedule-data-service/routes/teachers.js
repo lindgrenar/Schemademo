@@ -10,7 +10,7 @@ module.exports = function (server, db) {
     res.json(result)
   })
 
-  // registrera en ny lärare
+  // add new teacher 
   server.post('/data/teachers', (request, response) => {
     let user = request.body
     let encryptedPassword = encrypt(user.password)
