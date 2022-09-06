@@ -49,7 +49,6 @@ export const TeacherEdit = () => (
 );
 
 
-
 export const TeacherCreate = props => (
   <Create {...props} >
     <SimpleForm>

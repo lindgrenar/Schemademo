@@ -1,14 +1,36 @@
 const encrypt = require('../modules/encrypt.js')
 const setResultHeaders = require("../modules/set-result-headers");
 
-module.exports = function(server, db){
+module.exports = function (server, db) {
 
-  server.get('/data/teachers', (req, res)=>{
+  server.get('/data/teachers', (req, res) => {
     let query = "SELECT id, firstname, lastname, initials, phone, email, color, hide  FROM teachers ORDER BY initials"
     let result = db.prepare(query).all()
     setResultHeaders(res, result)
     res.json(result)
   })
+
+
+
+  //// Editing a teacher by id 
+  server.get('/data/teachers/:id', (req, res) => { // but limit which tables to query with ACL
+    let query = "SELECT id, firstname, lastname, initials, phone, email, color, hide  FROM teachers WHERE id=@id "
+    let result
+    try {
+      result = db.prepare(query).run({ id: req.params.id })
+    }
+    catch (e) {
+      console.error(e)
+      result = e;
+    }
+    res.json(result)
+  })
+
+
+
+
+
+
 
   // add new teacher 
   server.post('/data/teachers', (request, response) => {
@@ -28,9 +50,9 @@ module.exports = function(server, db){
   server.put('/data/teachers', (request, response) => {
     let user = request.body
     let result
-    try{
+    try {
       result = db.prepare('UPDATE teachers SET firstname = ?, lastname = ?, initials = ?, phone = ?, color = ?, hide = ? WHERE email = ?').run([user.firstname, user.lastname, user.initials, user.phone, user.color, user.hide, user.email])
-    }catch(e){
+    } catch (e) {
       console.error(e)
     }
     response.json(result)
@@ -41,9 +63,9 @@ module.exports = function(server, db){
   server.delete('/data/teachers/password', (request, response) => {
     let user = request.body
     let result
-    try{
+    try {
       result = db.prepare('UPDATE teachers SET password = NULL WHERE email = ? AND hide = 0').run([user.email])
-    }catch(e){
+    } catch (e) {
       console.error(e)
     }
     response.json(result)
@@ -55,9 +77,9 @@ module.exports = function(server, db){
     let user = request.body
     let encryptedPassword = encrypt(user.password)
     let result
-    try{
+    try {
       result = db.prepare('UPDATE teachers SET password = ? WHERE password IS NULL AND email = ?').run([encryptedPassword, user.email])
-    }catch(e){
+    } catch (e) {
       console.error(e)
     }
     response.json(result)

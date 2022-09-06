@@ -95,7 +95,9 @@
         "role": "user",
         "methods": [
           "GET",
-          "PUT"
+          "PUT",
+          "POST",
+          "DELETE"
         ]
       },
       {

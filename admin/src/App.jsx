@@ -6,7 +6,7 @@ import { UserList } from './users';
 import { TeacherList, TeacherCreate, TeacherEdit } from './teachers';
 import { SchoolList, SchoolCreate, SchoolEdit } from './schools';
 import { ClassList, ClassCreate, ClassEdit } from './classes';
-import { CoursesList, CoursesEdit, CoursesCreate } from './courses';
+import { CourseList, CourseEdit, CourseCreate } from './courses';
 /* import jsonServerProvider from 'ra-data-json-server'; */
 import simpleRestProvider from 'ra-data-simple-rest';
 import PostIcon from '@mui/icons-material/Book';
@@ -24,10 +24,10 @@ const App = () => (
   <Admin dashboard={Dashboard} dataProvider={dataProvider}>
     <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
-    <Resource name="teachers" list={TeacherList} edit={TeacherEdit} create={TeacherCreate} icon={SchoolIcon} />
+    <Resource name="teachers" list={TeacherList} create={TeacherCreate} edit={TeacherEdit} icon={SchoolIcon} />
     <Resource name="schools" list={SchoolList} edit={SchoolEdit} create={SchoolCreate} icon={ApartmentRounded} />
     <Resource name="classes" list={ClassList} edit={ClassEdit} create={ClassCreate} icon={PostIcon} />
-    <Resource name="courses" list={CoursesList} icon={PostIcon} edit={CoursesEdit} />
+    <Resource name="courses" list={CourseList} create={CourseCreate} icon={PostIcon} edit={CourseEdit} />
   </Admin>
 );
 
