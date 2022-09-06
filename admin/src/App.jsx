@@ -27,7 +27,7 @@ const App = () => (
     <Resource name="teachers" list={TeacherList} edit={TeacherEdit} create={TeacherCreate} icon={SchoolIcon} />
     <Resource name="schools" list={SchoolList} edit={SchoolEdit} create={SchoolCreate} icon={ApartmentRounded} />
     <Resource name="classes" list={ClassList} edit={ClassEdit} create={ClassCreate} icon={PostIcon} />
-    <Resource name="courses" list={CoursesList} icon={PostIcon} edit={CoursesEdit} />
+    <Resource name="courses" list={CoursesList} icon={PostIcon} edit={CoursesEdit} create={CoursesCreate} />
   </Admin>
 );
 

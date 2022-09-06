@@ -1,4 +1,4 @@
-import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit } from 'react-admin';
+import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit, Create, SimpleForm } from 'react-admin';
 
 export const CoursesList = () => (
   <List>
@@ -36,4 +36,23 @@ export const CoursesEdit = () => (
       <EditButton />
     </Datagrid>
   </Edit>
+);
+
+export const CoursesCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextField source='id' />
+      <TextField source='name' />
+      <TextField source='shortName' />
+      <NumberField source='class' />
+      <NumberField source='points' />
+      <TextField source='startDate' />
+      <TextField source='endDate' />
+      <TextField source='plan' />
+      <NumberField source='invoiceItem' />
+      <NumberField source='hoursPerDay' />
+      <BooleanField source='hide' />
+      <EditButton />
+    </SimpleForm>
+  </Create>
 );
