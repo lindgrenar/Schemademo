@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { Datagrid, List, TextField } from 'react-admin';
-=======
 import {
   List,
   Datagrid,
@@ -14,7 +11,6 @@ import {
   ReferenceInput,
   TextInput
 } from 'react-admin';
->>>>>>> origin/feature-teachers-edit
 
 export const SchoolList = () => (
   <List>
