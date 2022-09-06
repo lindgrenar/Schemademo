@@ -10,14 +10,20 @@ module.exports = function(server, db){
     res.json(result)
   })
 
-  // registrera en ny lärare
+  // add new teacher 
   server.post('/data/teachers', (request, response) => {
     let user = request.body
     let encryptedPassword = encrypt(user.password)
     let result
+<<<<<<< HEAD
     try{
       result = db.prepare('INSERT INTO teachers (email, password) VALUES(?,?)').run([user.email, encryptedPassword])
     }catch(e){
+=======
+    try {
+      result = db.prepare('INSERT INTO teachers (firstname, lastname, initials, phone, email, color, hide, password) VALUES(?,?,?,?,?,?,?,?)').run([user.firstname, user.lastname, user.initials, user.phone, user.email, user.color, user.hide, encryptedPassword])
+    } catch (e) {
+>>>>>>> origin/feature-teachers-edit
       console.error(e)
     }
     response.json(result)

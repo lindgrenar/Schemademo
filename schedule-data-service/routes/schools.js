@@ -10,58 +10,15 @@ module.exports = function (server, db) {
     res.json(result)
   })
 
-  /* // registrera en ny lärare
+  // registrera en ny school
   server.post('/data/schools', (request, response) => {
     let user = request.body
-    let encryptedPassword = encrypt(user.password)
     let result
     try {
-      result = db.prepare('INSERT INTO schools (name, shortName) VALUES(?,?)').run([user.email, encryptedPassword])
+      result = db.prepare('INSERT INTO schools (name, shortName) VALUES(?,?)').run([user.name, user.shortName])
     } catch (e) {
       console.error(e)
     }
     response.json(result)
-  }) */
-
-
-  /*  // komplettera profil för användare
-   server.put('/data/teachers', (request, response) => {
-     let user = request.body
-     let result
-     try {
-       result = db.prepare('UPDATE teachers SET firstname = ?, lastname = ?, initials = ?, phone = ?, color = ?, hide = ? WHERE email = ?').run([user.firstname, user.lastname, user.initials, user.phone, user.color, user.hide, user.email])
-     } catch (e) {
-       console.error(e)
-     }
-     response.json(result)
-   })
- 
- 
-   // begär ändring av lösenord för användare
-   server.delete('/data/teachers/password', (request, response) => {
-     let user = request.body
-     let result
-     try {
-       result = db.prepare('UPDATE teachers SET password = NULL WHERE email = ? AND hide = 0').run([user.email])
-     } catch (e) {
-       console.error(e)
-     }
-     response.json(result)
-   })
- 
- 
-   // ändra lösenord för användare
-   server.patch('/data/teachers/password', (request, response) => {
-     let user = request.body
-     let encryptedPassword = encrypt(user.password)
-     let result
-     try {
-       result = db.prepare('UPDATE teachers SET password = ? WHERE password IS NULL AND email = ?').run([encryptedPassword, user.email])
-     } catch (e) {
-       console.error(e)
-     }
-     response.json(result)
-   })
-  */
-
+  })
 }

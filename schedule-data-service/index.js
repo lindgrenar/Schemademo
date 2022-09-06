@@ -98,6 +98,7 @@ server.get('/data/classes_view/:all?', (req, res)=>{
 })
 
 const createInvoice = require('./services/create-invoice.js')
+const { request } = require("express")
 
 server.post('/data/invoices/', (req, res)=>{
   if(!req.body.startDate || !req.body.endDate || !req.body.school){
@@ -120,3 +121,33 @@ server.get('/data/:table', (req, res)=>{ // but limit which tables to query with
   setResultHeaders(res, result)
   res.json(result)
 })
+//////
+server.delete('/data/:table/:id', (req, res) => { // but limit which tables to query with ACL
+  let query = "DELETE FROM " + req.params.table + " WHERE id=@id "
+  let result
+  try {
+    result = db.prepare(query).run({ id: req.params.id })
+  }
+  catch (e) {
+    console.error(e)
+    result = e;
+  }
+  res.json(result)
+})
+
+//////
+
+
+/* // delete teachers table 
+server.delete('/data/:table/:id', (request, response) => {
+  let query = "DELETE FROM " + request.params.table + "WHERE id=@id"
+  let result;
+  try {
+    result = db.prepare(query).run({ id: request.params.id })
+  }
+  catch (e) {
+    console.error(e)
+    result = e;
+  }
+  response.json(result)
+}) */
