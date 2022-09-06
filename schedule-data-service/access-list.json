@@ -60,7 +60,8 @@
       {
         "role": "user",
         "methods": [
-          "GET"
+          "GET",
+          "POST"
         ]
       }
     ]
@@ -88,28 +89,7 @@
     ]
   },
   {
-    "route": "/data/teachers",
-    "roles": [
-      {
-        "role": "user",
-        "methods": [
-          "GET",
-          "PUT"
-        ]
-      },
-      {
-        "role": "admin",
-        "methods": [
-          "GET",
-          "PUT",
-          "POST",
-          "DELETE"
-        ]
-      }
-    ]
-  },
-  {
-    "route": "/data/teachers/id",
+    "route": "/data/teachers*",
     "roles": [
       {
         "role": "user",

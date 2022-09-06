@@ -114,8 +114,15 @@ server.get('/data/:table', (req, res) => { // but limit which tables to query wi
 })
 //////
 server.delete('/data/:table/:id', (req, res) => { // but limit which tables to query with ACL
-  let query = "DELETE FROM " + req.params.table + "WHERE id=@id"
-  let result = db.prepare(query).all({ id: request.params.id })
+  let query = "DELETE FROM " + req.params.table + " WHERE id=@id "
+  let result
+  try {
+    result = db.prepare(query).run({ id: req.params.id })
+  }
+  catch (e) {
+    console.error(e)
+    result = e;
+  }
   res.json(result)
 })
 

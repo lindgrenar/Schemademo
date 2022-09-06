@@ -7,7 +7,7 @@ import { PostCreate } from "./post-create";
 import { UserList } from './users';
 import { TeacherList, TeacherCreate, TeacherEdit } from './teachers';
 import { SchoolList, SchoolCreate, SchoolEdit } from './schools';
-import { ClassList } from './classes';
+import { ClassList, ClassCreate, ClassEdit } from './classes';
 /* import jsonServerProvider from 'ra-data-json-server'; */
 import simpleRestProvider from 'ra-data-simple-rest';
 import PostIcon from '@mui/icons-material/Book';
@@ -25,7 +25,7 @@ const App = () => (
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="teachers" list={TeacherList} edit={TeacherEdit} create={TeacherCreate} icon={UserIcon} />
     <Resource name="schools" list={SchoolList} edit={SchoolEdit} create={SchoolCreate} icon={UserIcon} />
-    <Resource name="classes" list={ClassList} icon={UserIcon} />
+    <Resource name="classes" list={ClassList} create={ClassCreate} edit={ClassEdit} icon={UserIcon} />
   </Admin>
 );
 
