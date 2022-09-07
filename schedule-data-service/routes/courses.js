@@ -15,13 +15,7 @@ module.exports = function (server, db) {
     let course = request.body
     let result
     try {
-      result = db.prepare(`INSERT INTO courses 
-      (name, shortName, class, points, startDate, endDate,
-        plan, invoiceItem, hoursPerDay, hide)
-        VALUES(?,?,?,?,?,?,?,?,?,?)`).run
-        ([course.name, course.shortName, course.class, course.points,
-        course.startDate, course.endDate, course.plan, course.invoiceItem,
-        course.hoursPerDay, course.hide])
+      result = db.prepare('INSERT INTO courses (name, shortName, class, points, startDate, endDate, plan, invoiceItem, hoursPerDay, hide) VALUES(?,?,?,?,?,?,?,?,?,?)').run([course.name, course.shortName, course.class, course.points, course.startDate, course.endDate, course.plan, course.invoiceItem, course.hoursPerDay, course.hide])
     } catch (e) {
       console.error(e)
     }
