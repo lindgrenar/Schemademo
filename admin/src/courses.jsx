@@ -40,7 +40,7 @@ export const CoursesEdit = () => (
 
 export const CoursesCreate = props => (
   <Create {...props} >
-    <SimpleForm>
+    <Datagrid>
       <TextField source='id' />
       <TextField source='name' />
       <TextField source='shortName' />
@@ -53,6 +53,6 @@ export const CoursesCreate = props => (
       <NumberField source='hoursPerDay' />
       <BooleanField source='hide' />
       <EditButton />
-    </SimpleForm>
+    </Datagrid>
   </Create>
 );
