@@ -38,8 +38,8 @@ export const CoursesEdit = () => (
   </Edit>
 );
 
-export const CoursesCreate = () => (
-  <Create>
+export const CoursesCreate = props => (
+  <Create {...props} >
     <SimpleForm>
       <TextField source='id' />
       <TextField source='name' />
