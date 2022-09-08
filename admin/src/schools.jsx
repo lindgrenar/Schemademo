@@ -28,7 +28,6 @@ export const SchoolEdit = () => (
       <TextField source="id" reference="schools" />
       <TextInput source="name" />
       <TextInput source="shortName" />
-
     </SimpleForm>
   </Edit>
 );
