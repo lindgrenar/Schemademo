@@ -12,19 +12,35 @@ module.exports = function (server, db) {
 
 
 
-  //// Editing a teacher by id 
-  server.get('/data/teachers/:id', (req, res) => { // but limit which tables to query with ACL
-    let query = "SELECT id, firstname, lastname, initials, phone, email, color, hide  FROM teachers WHERE id=@id "
-    let result
-    try {
-      result = db.prepare(query).run({ id: req.params.id })
-    }
-    catch (e) {
-      console.error(e)
-      result = e;
-    }
-    res.json(result)
-  })
+  /*  //// Editing a teacher by id 
+   server.put('/data/teachers/:id', (req, res) => { // but limit which tables to query with ACL
+     let query = "SELECT id, firstname, lastname, initials, phone, email, color, hide  FROM teachers WHERE id=@id "
+     let result
+     try {
+       result = db.prepare(query).run({ id: req.params.id })
+     }
+     catch (e) {
+       console.error(e)
+       result = e;
+     }
+     res.json(result)
+   }) */
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
