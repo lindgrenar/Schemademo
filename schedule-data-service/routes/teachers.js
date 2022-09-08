@@ -30,8 +30,6 @@ module.exports = function (server, db) {
 
 
 
-
-
   // add new teacher 
   server.post('/data/teachers', (request, response) => {
     let user = request.body
