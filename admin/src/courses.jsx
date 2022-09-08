@@ -1,9 +1,9 @@
-import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit, Create, SimpleForm } from 'react-admin';
+import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit, Create } from 'react-admin';
 
 export const CoursesList = () => (
   <List>
     <Datagrid>
-      <TextField source='id' />
+      <TextField source='id' reference='courses' />
       <TextField source='name' />
       <TextField source='shortName' />
       <NumberField source='class' />
@@ -22,7 +22,7 @@ export const CoursesList = () => (
 export const CoursesEdit = () => (
   <Edit>
     <Datagrid>
-      <TextField source='id' />
+      <TextField source='id' reference='courses' />
       <TextField source='name' />
       <TextField source='shortName' />
       <NumberField source='class' />
@@ -33,15 +33,14 @@ export const CoursesEdit = () => (
       <NumberField source='invoiceItem' />
       <NumberField source='hoursPerDay' />
       <BooleanField source='hide' />
-      <EditButton />
     </Datagrid>
   </Edit>
 );
 
-export const CoursesCreate = () => (
-  <Create>
-    <SimpleForm>
-      <TextField source='id' />
+export const CoursesCreate = props => (
+  <Create {...props} >
+    <Datagrid>
+      <TextField source='id' reference='courses' />
       <TextField source='name' />
       <TextField source='shortName' />
       <NumberField source='class' />
@@ -51,8 +50,7 @@ export const CoursesCreate = () => (
       <TextField source='plan' />
       <NumberField source='invoiceItem' />
       <NumberField source='hoursPerDay' />
-      <BooleanField source='hide' />
-      <EditButton />
-    </SimpleForm>
+      <BooleanField source='hide' defaultValue={0} />
+    </Datagrid>
   </Create>
 );
