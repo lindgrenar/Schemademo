@@ -142,3 +142,21 @@ server.delete('/data/:table/:id', (request, response) => {
   }
   response.json(result)
 }) */
+
+
+server.put('/data/:table/:id', (req, res) => { // limit which tables to query with ACL
+  req.body.id = req.params.id // move/replace the id into the body so it can be passed with the other replacements
+  let query = `UPDATE ${req.params.table} SET`
+  for (let key of Object.keys(req.body)) {
+    query += ` ${key}=@${key},`
+  }
+  query = query.replace(/\,$/, '')
+  query += ` WHERE id = @id`
+  let result
+  try {
+    result = db.prepare(query).run(req.body)
+  } catch (e) {
+    console.error(e)
+  }
+  res.json(result)
+})
