@@ -13,6 +13,17 @@ describe('Test login page', () => {
     loging.clickLogin()
 
   })
+
+  it.skip('Schedule proeject login function test', () => {
+
+    cy.visit('http://localhost:7666/login.html')
+
+    loging.enterUsername('exempel@nodehill.com')
+    loging.enterPassword('abc1234')
+    loging.clickLogin()
+
+  })
+
 })
 
 

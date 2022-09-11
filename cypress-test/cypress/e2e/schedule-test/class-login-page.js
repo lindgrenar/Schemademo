@@ -6,7 +6,7 @@ export class LoginPage {
   loginpage_password_textbox = '#password'   //css locator 
   loginpage_clicklogin_textbox = '[type="submit"]'  //css locator
 
-  
+
 
 
   enterUsername(email) {
