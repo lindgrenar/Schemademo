@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd schedule-data-service && node index",
-    "cy-test": "cypress run"
+    "cy-test": "npx cypress open"
   },
   "keywords": [],
   "author": "",
