@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "cypress": "^10.7.0"
+  },
+  "scripts": {
+    "cy-test": "cypress run"
   }
 }
