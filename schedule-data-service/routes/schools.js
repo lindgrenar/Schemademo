@@ -23,14 +23,15 @@ module.exports = function (server, db) {
     response.json(result)
   })
 
-  server.put('/data/schools', (request, response) => {
-    let user = request.body
+  server.put('/data/schools/:id', (req, res)=>{ // limit which tables to query with ACL
+    req.body.id = req.params.id // move/replace the id into the body so it can be passed with the other replacements
+    let query = `UPDATE schools SET name = ?, shortName = ?, WHERE id = @id`      
     let result
-    try {
-      result = db.prepare('UPDATE schools SET name = ?, shortname = ?, WHERE id = ?').run([user.id, user.name, user.shortName])
+    try{
+      result = db.prepare(query).run(req.body)
     }catch(e){
       console.error(e)
     }
-    response.json(result)
-  })
+    res.json(result)
+})
 }
