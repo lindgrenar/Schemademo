@@ -3,7 +3,7 @@ const encrypt = require('../modules/encrypt.js')
 
 module.exports = function (server, db) {
 
-  server.get('/data/schools', (req, res) => {
+  server.get('/data/schools*', (req, res) => {
     let query = "SELECT id, name, shortName FROM schools"
     let result = db.prepare(query).all()
     res.setHeader('Content-Range', result.length);
