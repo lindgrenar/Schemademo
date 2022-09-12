@@ -33,7 +33,7 @@
     ]
   },
   {
-    "route": "/data/schools",
+    "route": "/data/schools*",
     "roles": [
       {
         "role": "user",
