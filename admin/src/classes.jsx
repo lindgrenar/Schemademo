@@ -1,4 +1,4 @@
-import { Datagrid, EmailField, List, TextField } from 'react-admin';
+import { BooleanField, Datagrid, DateField, List, NumberField, TextField, Edit, Create, SimpleForm } from 'react-admin';
 
 export const ClassList = () => (
   <List>
@@ -8,11 +8,10 @@ export const ClassList = () => (
       <TextField source="shortName" />
       <TextField source="school" />
       <TextField source="blog" />
-      <EmailField source="hide" />
-      <TextField source="defaultStartTime" />
-      <TextField source="defaultEndTime" />
-      <TextField source="defaultlnvoiceTime" />
-      <TextField source="defaultHoursPerDay" />
+      <BooleanField source="hide" />
+      <DateField source="defaultStartTime" />
+      <DateField source="defaultEndTime" />
+      <NumberField source="defaultHoursPerDay" />
     </Datagrid>
   </List>
 )
@@ -25,11 +24,10 @@ export const ClassEdit = () => (
       <TextField source="shortName" />
       <TextField source="school" />
       <TextField source="blog" />
-      <EmailField source="hide" />
-      <TextField source="defaultStartTime" />
-      <TextField source="defaultEndTime" />
-      <TextField source="defaultlnvoiceTime" />
-      <TextField source="defaultHoursPerDay" />
+      <BooleanField source="hide" />
+      <DateField source="defaultStartTime" />
+      <DateField source="defaultEndTime" />
+      <NumberField source="defaultHoursPerDay" />
 
     </SimpleForm>
   </Edit>
@@ -41,13 +39,12 @@ export const ClassCreate = props => (
       <TextField source="id" reference="classes" />
       <TextField source="name" />
       <TextField source="shortName" />
-      <TextField source="school" />
       <TextField source="blog" />
-      <EmailField source="hide" />
-      <TextField source="defaultStartTime" />
-      <TextField source="defaultEndTime" />
-      <TextField source="defaultlnvoiceTime" />
-      <TextField source="defaultHoursPerDay" />
+      <TextField source="school" />
+      <BooleanField source="hide" />
+      <DateField source="defaultStartTime" />
+      <DateField source="defaultEndTime" />
+      <NumberField source="defaultHoursPerDay" />
     </SimpleForm >
   </Create >
 );

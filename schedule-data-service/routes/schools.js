@@ -33,5 +33,5 @@ module.exports = function (server, db) {
       console.error(e)
     }
     res.json(result)
-})
+  })
 }
