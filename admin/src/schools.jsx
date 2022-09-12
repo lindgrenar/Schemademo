@@ -26,7 +26,7 @@ export const SchoolList = () => (
 export const SchoolEdit = () => (
   <Edit>
     <SimpleForm>
-      <TextField source="id" reference="schools" />
+      <TextField disabled source="id" reference="schools" />
       <TextInput source="name" />
       <TextInput source="shortName" />
     </SimpleForm>
