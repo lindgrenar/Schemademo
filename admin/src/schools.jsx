@@ -18,6 +18,7 @@ export const SchoolList = () => (
       <TextField source="id" reference="schools" />
       <TextField source="name" />
       <TextField source="shortName" />
+      <EditButton />
     </Datagrid>
   </List>
 )
@@ -28,7 +29,6 @@ export const SchoolEdit = () => (
       <TextField source="id" reference="schools" />
       <TextInput source="name" />
       <TextInput source="shortName" />
-      <EditButton />
     </SimpleForm>
   </Edit>
 );
