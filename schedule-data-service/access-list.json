@@ -94,6 +94,15 @@
         "methods": [
           "GET"
         ]
+      },
+      {
+        "role": "admin",
+        "methods": [
+          "GET",
+          "PUT",
+          "POST",
+          "DELETE"
+        ]
       }
     ]
   },
