@@ -1,4 +1,4 @@
-import { BooleanField, Datagrid, DateField, List, NumberField, TextField, Edit, Create, SimpleForm } from 'react-admin';
+import { BooleanField, Datagrid, DateField, List, NumberField, TextField, Edit, Create, SimpleForm, TextInput, BooleanInput, NumberInput, DateInput } from 'react-admin';
 
 export const ClassList = () => (
   <List>
@@ -9,8 +9,8 @@ export const ClassList = () => (
       <TextField source="school" />
       <TextField source="blog" />
       <BooleanField source="hide" />
-      <DateField source="defaultStartTime" />
-      <DateField source="defaultEndTime" />
+      <NumberField source="defaultStartTime" />
+      <NumberField source="defaultEndTime" />
       <NumberField source="defaultHoursPerDay" />
     </Datagrid>
   </List>
@@ -20,14 +20,14 @@ export const ClassEdit = () => (
   <Edit>
     <SimpleForm>
       <TextField source="id" reference="classes" />
-      <TextField source="name" />
-      <TextField source="shortName" />
-      <TextField source="school" />
-      <TextField source="blog" />
-      <BooleanField source="hide" />
-      <DateField source="defaultStartTime" />
-      <DateField source="defaultEndTime" />
-      <NumberField source="defaultHoursPerDay" />
+      <TextInput source="name" />
+      <TextInput source="shortName" />
+      <TextInput source="school" />
+      <TextInput source="blog" />
+      <BooleanInput source="hide" />
+      <NumberInput source="defaultStartTime" />
+      <NumberInput source="defaultEndTime" />
+      <NumberInput source="defaultHoursPerDay" />
 
     </SimpleForm>
   </Edit>
