@@ -3,9 +3,17 @@ const encrypt = require('../modules/encrypt.js')
 
 module.exports = function (server, db) {
 
-  server.get('/data/schools*', (req, res) => {
+  server.get('/data/schools', (req, res) => {
     let query = "SELECT id, name, shortName FROM schools"
     let result = db.prepare(query).all()
+    res.setHeader('Content-Range', result.length);
+    res.setHeader('X-Total-Count', result.length);
+    res.json(result)
+  })
+
+  server.get('/data/classes/:id', (req, res) => {
+    let query = "SELECT id, name, shortName FROM shools WHERE id=@id"
+    let result = db.prepare(query).all({ id: req.params.id })
     res.setHeader('Content-Range', result.length);
     res.setHeader('X-Total-Count', result.length);
     res.json(result)
@@ -23,13 +31,13 @@ module.exports = function (server, db) {
     response.json(result)
   })
 
-  server.put('/data/schools/:id', (req, res)=>{ // limit which tables to query with ACL
+  server.put('/data/schools/:id', (req, res) => { // limit which tables to query with ACL
     req.body.id = req.params.id // move/replace the id into the body so it can be passed with the other replacements
-    let query = `UPDATE schools SET name = ?, shortName = ?, WHERE id = @id`      
+    let query = `UPDATE schools SET name = ?, shortName = ?, WHERE id = @id`
     let result
-    try{
+    try {
       result = db.prepare(query).run(req.body)
-    }catch(e){
+    } catch (e) {
       console.error(e)
     }
     res.json(result)

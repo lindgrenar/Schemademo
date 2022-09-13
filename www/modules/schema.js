@@ -23,6 +23,7 @@ export async function renderSchema(startDate, endDate, today = new Date()){
   
   // table head
   for (let klass of classes) {
+    console.log(klass)
     html += `<th><div>` + klass.schoolShortName.replace(' ', '&nbsp;') + '<br>' + (klass.blog ? '<a href="' + klass.blog + '" target="_blank"><i class="fas fa-external-link-alt"></i>' + klass.shortName + '</a>' : klass.shortName) + '</div></th>';
   }
 

@@ -13,6 +13,14 @@ module.exports = function (server, db) {
     res.json(result)
   })
 
+  server.get('/data/courses/:id', (req, res) => {
+    let query = "SELECT * FROM courses WHERE id=@id"
+    let result = db.prepare(query).all({ id: req.params.id })
+    res.setHeader('Content-Range', result.length);
+    res.setHeader('X-Total-Count', result.length);
+    res.json(result)
+  })
+
   server.post('/data/courses', (request, response) => {
     let course = request.body
     let result
