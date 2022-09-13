@@ -1,4 +1,4 @@
-import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit, Create, SimpleForm } from 'react-admin';
+import { Datagrid, List, TextField, NumberField, BooleanField, EditButton, Edit, Create, SimpleForm, TextInput, NumberInput, BooleanInput, DateInput, DateField } from 'react-admin';
 
 export const CoursesList = () => (
   <List>
@@ -8,8 +8,8 @@ export const CoursesList = () => (
       <TextField source='shortName' />
       <NumberField source='class' />
       <NumberField source='points' />
-      <TextField source='startDate' />
-      <TextField source='endDate' />
+      <DateField source='startDate' />
+      <DateField source='endDate' />
       <TextField source='plan' />
       <NumberField source='invoiceItem' />
       <NumberField source='hoursPerDay' />
@@ -21,19 +21,19 @@ export const CoursesList = () => (
 
 export const CoursesEdit = () => (
   <Edit>
-    <Datagrid>
+    <SimpleForm>
       <TextField source='id' reference='courses' />
       <TextField source='name' />
       <TextField source='shortName' />
       <NumberField source='class' />
       <NumberField source='points' />
-      <TextField source='startDate' />
-      <TextField source='endDate' />
+      <DateField source='startDate' />
+      <DateField source='endDate' />
       <TextField source='plan' />
       <NumberField source='invoiceItem' />
       <NumberField source='hoursPerDay' />
       <BooleanField source='hide' />
-    </Datagrid>
+    </SimpleForm>
   </Edit>
 );
 
@@ -41,16 +41,16 @@ export const CoursesCreate = props => (
   <Create {...props} >
     <SimpleForm>
       <TextField source='id' reference='courses' />
-      <TextField source='name' />
-      <TextField source='shortName' />
-      <NumberField source='class' />
-      <NumberField source='points' />
-      <TextField source='startDate' />
-      <TextField source='endDate' />
-      <TextField source='plan' />
-      <NumberField source='invoiceItem' />
-      <NumberField source='hoursPerDay' />
-      <BooleanField source='hide' />
+      <TextInput source='name' />
+      <TextInput source='shortName' />
+      <NumberInput source='class' />
+      <NumberInput source='points' />
+      <DateInput source='startDate' />
+      <DateInput source='endDate' />
+      <TextInput source='plan' />
+      <NumberInput source='invoiceItem' />
+      <NumberInput source='hoursPerDay' />
+      <BooleanInput source='hide' />
     </SimpleForm>
   </Create>
 );
