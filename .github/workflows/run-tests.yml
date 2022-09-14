@@ -29,7 +29,7 @@ jobs:
       # based backend without blocking the terminal
     - run: npm install -g pm2
     - run: pm2 start schedule-data-service/index.js
-    - run: pm2 start init-adm
+    - run: pm2 start admin/vite build
       # install newman globally so we can run
       # postman collections
     - run: npm install -g newman
