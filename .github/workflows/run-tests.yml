@@ -28,6 +28,7 @@ jobs:
     - run: npm install cypress --save-dev
     - run: npm install --save-dev cypress-cucumber-preprocessor
     - run: npm install vite
-    - run: npm start
+    - run: npm init-adm
+    - run: npm init-sds
     - run: npx cypress run 
 
