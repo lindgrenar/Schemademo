@@ -27,7 +27,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm install cypress --save-dev
     - run: npm install --save-dev cypress-cucumber-preprocessor
-    - run: cd admin && npm install vite && npm install && npm run dev
-    - run: cd schedule-data-service && node index
+    - run: npm install vite
+    - run: npm start
     - run: npx cypress run 
 
