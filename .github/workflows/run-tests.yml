@@ -33,5 +33,7 @@ jobs:
       # install pm2 so we can run our node.js
       # based backend without blocking the terminal
     - run: npm install -g pm2
+    - run: npm run init-adm
+    - run: npm run init-sds
       # run our api tests
-    - run: newman run test-rest-api/teacher_newman.json
+    - run: npm run init-tra
