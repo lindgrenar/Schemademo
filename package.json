@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd schedule-data-service && node index",
-    "init-sds": "cd schedule-data-service && node index",
-    "init-adm": "cd admin && vite build",
-    "start": "start npm run init-sds && start npm run init-adm",
+    "init-sds": "cd schedule-data-service && npm install && node index",
+    "init-adm": "cd admin && npm install && vite build",
     "cy-test": "npx cypress open"
   },
   "keywords": [],
