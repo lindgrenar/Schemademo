@@ -6,10 +6,10 @@ module.exports = defineConfig(
   {
     e2e:
     {
-      specPattern: "/c/Users/jahed/Desktop/Agile_exam/Schemademo/cypress/e2e/features/*.feature",
-      baseUrl: "http://localhost:7666/login.html",
-      supportFile: false,
-      chromeWebSecurity: false,
+      specPattern: "**/*.feature",
+      // baseUrl: "http://localhost:7666/login.html",
+      //supportFile: false,
+      //chromeWebSecurity: false,
       setupNodeEvents(on, config) {
         // implement node event listeners here
 

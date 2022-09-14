@@ -5,7 +5,7 @@ Feature: login page
     Given A user visit nodehill localhost website
 
   Scenario: Success Login
-    When An user enter the email 'exempel@nodehill.com'
-    And A user enter the password 'abc123'
+    When A user enters the email
+    And A user enters the password
     And A user clicks on the login button
     Then The website will show the schedule page
