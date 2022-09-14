@@ -16,7 +16,7 @@ describe('The Login Page and Home Page', () => {
     cy.url().should('eq', 'http://localhost:7666/admin/')
     cy.get('[href="#/classes"]').click()
     cy.get(':nth-child(10) > .column-undefined > .MuiButton-root').click({force: true})
-    cy.get('#defaultHoursPerDay').type('2').submit()
+    cy.get('#defaultHoursPerDay').type('2{enter}')
     cy.get('.RaToolbar-defaultToolbar > .MuiButton-root').should('not.be.disabled').click()
   })
 
