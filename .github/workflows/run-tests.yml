@@ -25,8 +25,8 @@ jobs:
     - run: npm ci
     # run the npm build command (not used in our project)
     - run: npm run build --if-present
-    - run: npm run init-adm
     - run: npm run init-sds
+    - run: npm run init-adm
       # install newman globally so we can run
       # postman collections
     - run: npm install -g newman
