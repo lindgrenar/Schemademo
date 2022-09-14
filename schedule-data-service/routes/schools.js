@@ -11,8 +11,8 @@ module.exports = function (server, db) {
     res.json(result)
   })
 
-  server.get('/data/classes/:id', (req, res) => {
-    let query = "SELECT id, name, shortName FROM shools WHERE id=@id"
+  server.get('/data/schools/:id', (req, res) => {
+    let query = "SELECT id, name, shortName FROM schools WHERE id=@id"
     let result = db.prepare(query).all({ id: req.params.id })
     res.setHeader('Content-Range', result.length);
     res.setHeader('X-Total-Count', result.length);

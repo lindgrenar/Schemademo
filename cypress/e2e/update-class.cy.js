@@ -15,7 +15,7 @@ describe('The Login Page and Home Page', () => {
     cy.visit('/admin')
     cy.url().should('eq', 'http://localhost:7666/admin/')
     cy.get('[href="#/classes"]').click()
-    cy.get(':nth-child(56) > .column-id').click()
+    cy.get(':nth-child(10) > .column-undefined > .MuiButton-root').click({force: true})
   })
 
 })
