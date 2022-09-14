@@ -10,6 +10,7 @@
     "init-adm": "cd admin && npm install && vite build",
     "cy-test": "npx cypress open",
     "init-tra": "cd test-rest-api && newman run teacher_newman.json"
+  
   },
   "keywords": [],
   "author": "",
