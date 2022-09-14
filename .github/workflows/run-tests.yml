@@ -35,4 +35,4 @@ jobs:
     - run: npm install -g newman
    
       # run our api tests
-    - run: cd test-rest-api && newman run teacher_newman.json
+    - run: cd test-rest-api && npm install && newman run teacher_newman.json
