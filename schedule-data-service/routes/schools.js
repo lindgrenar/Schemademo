@@ -1,8 +1,9 @@
+const { response } = require('express')
 const encrypt = require('../modules/encrypt.js')
 
 module.exports = function (server, db) {
 
-  server.get('/data/schools', (req, res) => {
+  server.get('/data/schools*', (req, res) => {
     let query = "SELECT id, name, shortName FROM schools"
     let result = db.prepare(query).all()
     res.setHeader('Content-Range', result.length);
@@ -21,4 +22,16 @@ module.exports = function (server, db) {
     }
     response.json(result)
   })
+
+  server.put('/data/schools/:id', (req, res)=>{ // limit which tables to query with ACL
+    req.body.id = req.params.id // move/replace the id into the body so it can be passed with the other replacements
+    let query = `UPDATE schools SET name = ?, shortName = ?, WHERE id = @id`      
+    let result
+    try{
+      result = db.prepare(query).run(req.body)
+    }catch(e){
+      console.error(e)
+    }
+    res.json(result)
+})
 }
