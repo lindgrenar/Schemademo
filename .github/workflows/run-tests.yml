@@ -35,4 +35,4 @@ jobs:
     - run: npm install -g newman
    
       # run our api tests
-    - run: pm2 start init-tra
+    - run: pm2 start test-rest-api/teacher_newman.json
