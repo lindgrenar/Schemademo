@@ -33,7 +33,7 @@
     ]
   },
   {
-    "route": "/data/schools",
+    "route": "/data/schools*",
     "roles": [
       {
         "role": "user",
@@ -84,6 +84,15 @@
         "role": "user",
         "methods": [
           "GET"
+        ]
+      },
+      {
+        "role": "admin",
+        "methods": [
+          "GET",
+          "PUT",
+          "POST",
+          "DELETE"
         ]
       }
     ]
