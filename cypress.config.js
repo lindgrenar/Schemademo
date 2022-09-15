@@ -6,8 +6,8 @@ module.exports = defineConfig(
   {
     e2e:
     {
-      specPattern: "**/*.feature",
-      // baseUrl: "http://localhost:7666/login.html",
+      specPattern: ["**/*.feature", "**/*.cy.js"],
+      baseUrl: "http://localhost:7666/",
       //supportFile: false,
       //chromeWebSecurity: false,
       setupNodeEvents(on, config) {
@@ -37,7 +37,7 @@ module.exports = defineConfig(
                               options: config,
                             },
                           ],
-                      },
+                      }
                     ],
                 },
               },
