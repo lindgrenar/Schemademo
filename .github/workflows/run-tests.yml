@@ -2,19 +2,19 @@ name: Run tests
 
 on:
   push:
-    branches: [test-CI-2]
+    branches: [test-CI-Newman]
  
 
 jobs:
-  cypress-test:
+
+  api-test:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+ 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,10 +23,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm install -g pm2
+    # run the npm build command (not used in our project)
     - run: npm run build --if-present
-    - run: npm install cypress --save-dev
-    - run: npm install --save-dev cypress-cucumber-preprocessor
+       # install pm2 so we can run our node.js
+      # based backend without blocking the terminal
     - run: npm run init-adm
-    - run: npm run init-sds & npx cypress run 
-
+      # install newman globally so we can run
+      # postman collections
+      # run our api tests
+    - run: npm run init-sds & npm run init-postman
