@@ -49,6 +49,7 @@ require('./routes/teachers.js')(server, db)
 require('./routes/login.js')(server, db)
 require('./routes/schools.js')(server, db)
 
+
 const apiDescription = require('./api-description.js')(host)
 
 server.get("/data", async (req, res) => {
@@ -66,14 +67,6 @@ server.get('/data/calendar/:from/:to', (req, res) => {
 server.get('/data/courses/:from/:to', (req, res) => {
   let query = "SELECT * FROM courses WHERE startDate >= @startDate AND endDate <= @endDate"
   let result = db.prepare(query).all({ startDate: req.params.from, endDate: req.params.to })
-  setResultHeaders(res, result)
-  res.json(result)
-})
-
-server.post('/data/courses', (req, res) => {
-  let query = "INSERT INTO courses VALUES(@id, @name, @shortName, @class, @points, @startDate, @endDate, @plan, @invoiceItem, @hoursPerDay)"
-  let statement = db.prepare(query)
-  let result = statement.run(req.body)
   setResultHeaders(res, result)
   res.json(result)
 })
@@ -99,7 +92,6 @@ server.get('/data/classes_view/:all?', (req, res) => {
 })
 
 const createInvoice = require('./services/create-invoice.js')
-const { request } = require("express")
 
 server.post('/data/invoices/', (req, res) => {
   if (!req.body.startDate || !req.body.endDate || !req.body.school) {
@@ -122,33 +114,49 @@ server.get('/data/:table', (req, res) => { // but limit which tables to query wi
   setResultHeaders(res, result)
   res.json(result)
 })
-//////
-server.delete('/data/:table/:id', (req, res) => { // but limit which tables to query with ACL
-  let query = "DELETE FROM " + req.params.table + " WHERE id=@id "
+
+server.get('/data/:table/:id', (req, res) => { // but limit which tables to query with ACL
+  let query = "SELECT * FROM " + req.params.table + ' WHERE id = @id'
+  let result = db.prepare(query).all(req.params)
+  setResultHeaders(res, result[0])
+  res.json(result[0])
+})
+
+server.post('/data/:table', (req, res) => { // limit which tables to query with ACL
+  let query = `INSERT INTO ${req.params.table} (${Object.keys(req.body).join(', ')}) VALUES(@${Object.keys(req.body).join(', @')})`
   let result
   try {
-    result = db.prepare(query).run({ id: req.params.id })
-  }
-  catch (e) {
+    result = db.prepare(query).run(req.body)
+  } catch (e) {
     console.error(e)
-    result = e;
   }
   res.json(result)
 })
 
-//////
-
-
-/* // delete teachers table 
-server.delete('/data/:table/:id', (request, response) => {
-  let query = "DELETE FROM " + request.params.table + "WHERE id=@id"
-  let result;
+server.put('/data/:table/:id', (req, res) => { // limit which tables to query with ACL
+  req.body.id = req.params.id // move/replace the id into the body so it can be passed with the other replacements
+  let query = `UPDATE ${req.params.table} SET`
+  for (let key of Object.keys(req.body)) {
+    query += ` ${key}=@${key},`
+  }
+  query = query.replace(/\,$/, '')
+  query += ` WHERE id = @id`
+  let result
   try {
-    result = db.prepare(query).run({ id: request.params.id })
-  }
-  catch (e) {
+    result = db.prepare(query).run(req.body)
+  } catch (e) {
     console.error(e)
-    result = e;
   }
-  response.json(result)
-}) */
+  res.json(result)
+})
+
+server.delete('/data/:table/:id', (req, res) => {
+  let query = "DELETE FROM " + req.params.table + " WHERE id = @id"
+  let result
+  try {
+    result = db.prepare(query).run({ id: req.params.id })
+  } catch (e) {
+    console.error(e)
+  }
+  res.json(result)
+})
