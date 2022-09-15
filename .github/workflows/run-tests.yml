@@ -28,8 +28,9 @@ jobs:
        # install pm2 so we can run our node.js
       # based backend without blocking the terminal
     - run: npm install -g pm2
-    - run: pm2 start "npm run dev"
     - run: npm run init-adm
+    - run: pm2 start "npm run init-sds"
+    
       # install newman globally so we can run
       # postman collections
     - run: npm install -g newman
