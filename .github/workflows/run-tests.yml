@@ -29,11 +29,10 @@ jobs:
       # based backend without blocking the terminal
     - run: npm install -g pm2
     - run: npm run init-adm
-    - run: pm2 start "npm run init-sds"
+  
     
       # install newman globally so we can run
       # postman collections
-    - run: npm install -g newman
    
       # run our api tests
-    - run: cd test-rest-api && npm install -g newman && newman run teacher_newman.json
+    - run: npm run init-sds & npm run init-postman
