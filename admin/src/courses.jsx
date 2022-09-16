@@ -40,7 +40,7 @@ export const CoursesEdit = () => (
 export const CoursesCreate = props => (
   <Create {...props} >
     <SimpleForm>
-      <TextField source='id' reference='courses' />
+      <TextField disabled source='id' reference='courses' />
       <TextInput source='name' />
       <TextInput source='shortName' />
       <NumberInput source='class' />
@@ -50,7 +50,7 @@ export const CoursesCreate = props => (
       <TextInput source='plan' />
       <NumberInput source='invoiceItem' />
       <NumberInput source='hoursPerDay' />
-      <BooleanInput source='hide' />
+      <BooleanInput label="hide" source="hide" defaultValue={0} />
     </SimpleForm>
   </Create>
 );
