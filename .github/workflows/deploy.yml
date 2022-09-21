@@ -82,6 +82,9 @@ jobs:
         
       - name: Deploy from dev 
         run: ssh dev 'cd Schemademo && git fetch && git reset --hard origin/dev && npm install'
-
+        
+      - name: init adm
+        run: ssh dev 'cd Schemademo && npm run init-adm'
+ 
       - name: Restart app 
-        run: ssh dev 'pm2 start "npm run dev"'
+        run: ssh dev 'pm2 start npm -- "npm run dev"'
