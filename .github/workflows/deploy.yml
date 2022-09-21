@@ -1,0 +1,87 @@
+name: run tests and deploy to dev
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:  
+  cypress-test:
+    name: "cypress-test"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm install -g pm2
+    - run: npm run build --if-present
+    - run: npm install cypress --save-dev
+    - run: npm install --save-dev cypress-cucumber-preprocessor
+    - run: npm run init-adm
+    - run: npm run init-sds & npx cypress run 
+
+
+  api-test:
+    name: "api-test"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+ 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm run init-adm
+    - run: npm run init-sds & npm run init-postman 
+
+
+  deploy:
+    needs: [api-test, cypress-test]
+    name: "Deploy dev to dev"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/dev.key
+          chmod 600 ~/.ssh/dev.key
+          cat >>~/.ssh/config <<END
+          Host dev
+            HostName $SSH_HOST
+            User $SSH_USER
+            Port $SSH_PORT
+            IdentityFile ~/.ssh/dev.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}          
+          
+      - name: Unblock port 7666
+        run: ssh dev 'pm2 stop 0'
+        
+      - name: Deploy from dev 
+        run: ssh dev 'cd Schemademo && git fetch && git reset --hard origin/dev && npm install'
+
+      - name: Restart app 
+        run: ssh dev 'pm2 start 0'
