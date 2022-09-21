@@ -87,4 +87,4 @@ jobs:
         run: ssh dev 'cd Schemademo && npm run init-adm'
  
       - name: Restart app 
-        run: ssh dev 'cd Schemademo && pm2 start npm -- "npm run init-sds"'
+        run: ssh dev 'cd Schemademo && pm2 start 'npm run dev'
