@@ -78,10 +78,10 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}          
           
       - name: Unblock port 7666
-        run: ssh dev 'pm2 stop 0'
+        run: ssh dev 'pm2 delete 0'
         
       - name: Deploy from dev 
         run: ssh dev 'cd Schemademo && git fetch && git reset --hard origin/dev && npm install'
 
       - name: Restart app 
-        run: ssh dev 'pm2 start 0'
+        run: ssh dev 'pm2 start "npm run dev"'
