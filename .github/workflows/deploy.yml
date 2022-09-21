@@ -78,7 +78,7 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}          
           
       - name: Kill running app to free port 7666
-        run: ssh dev '(pm2 delete 0)||(pm2 start 'npm run dev')'
+        run: ssh dev 'cd Schemademo && ((pm2 delete 0)||(pm2 start 'npm run dev'))'
         
       - name: Deploy from dev 
         run: ssh dev 'cd Schemademo && git fetch && git reset --hard origin/dev && npm install'
